@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SertifKu — Arsip Sertifikat Mahasiswa</title>
+  <link rel="stylesheet" href="style6.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- ==================== PAGE 1: LOGIN ==================== -->
+  <div id="loginPage" class="page active">
+    <div class="login-left">
+      <div class="brand">
+        <img src="sertif.png" alt="SertifKu Logo" class="brand-logo-img">
+      </div>
+      <p class="subtitle">ARSIP SERTIFIKAT MAHASISWA</p>
+      <h1>Semua sertifikat,<br>di satu tempat.</h1>
+      <p class="desc">Simpan dan temukan sertifikat kegiatanmu dengan lebih mudah.</p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginNama">Nama lengkap</label>
+          <input type="text" id="loginNama" placeholder="Contoh: Segi Bayu" required>
+        </div>
+        <div class="form-group">
+          <label for="loginNim">Nomor Induk Mahasiswa (NIM)</label>
+          <input type="text" id="loginNim" placeholder="Masukkan NIM" required>
+        </div>
+        <button type="submit" class="btn-primary btn-full">
+          Masuk ke SertifKu <i data-lucide="arrow-right"></i>
+        </button>
+      </form>
+
+      <p class="demo-note">Demo tugas kuliah · Data tersimpan di browser laptop ini</p>
+    </div>
+
+    <div class="login-right">
+      <div class="illustration-container">
+        <!-- Floating background shapes -->
+        <div class="shape circle-1"></div>
+        <div class="shape circle-2"></div>
+        
+        <!-- Ilustrasi Utama -->
+        <div class="cert-illustration-wrapper">
+          <img src="logo sertif.png" alt="Ilustrasi Sertifikat" class="cert-hero-img">
+        </div>
+
+        <div class="sparkle-text">
+          <span class="sparkle-icon">✦</span> Perjalananmu layak disimpan.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 2: MAIN APP ==================== -->
+  <div id="appPage" class="page">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="sertif.png" alt="SertifKu Logo" class="sidebar-logo-img">
+        <span class="brand-name">SertifKu</span>
+      </div>
+
+      <div class="sidebar-menu">
+        <p class="menu-label">MENU UTAMA</p>
+        <button class="nav-item active" data-view="dashboard" id="navDashboard">
+          <i data-lucide="layout-grid"></i>
+          Dashboard
+        </button>
+        <button class="nav-item" data-view="sertifikat" id="navSertifikat">
+          <i data-lucide="file-text"></i>
+          Sertifikat Saya
+        </button>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="promo-card">
+          <span class="sparkle-icon">✦</span>
+          <h4>Arsip lebih rapi</h4>
+          <p>Semua pencapaianmu tersimpan di satu tempat.</p>
+        </div>
+        <button id="btnLogout" class="btn-logout">
+          <i data-lucide="log-out"></i>
+          Keluar
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <div class="breadcrumb">
+          <span>SertifKu</span> / <span id="breadcrumbCurrent">Dashboard</span>
+        </div>
+        <div class="user-profile">
+          <div class="avatar" id="userAvatar">S</div>
+          <div class="user-info">
+            <h4 id="userName">Segi Bayu Pratiwi</h4>
+            <p id="userNim">2517000006</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- VIEW 1: DASHBOARD -->
+      <section id="dashboardView" class="view-content active">
+        <div class="view-header">
+          <div>
+            <p class="section-tag">RUANG ARSIP PRIBADIMU</p>
+            <h1 class="welcome-title">Halo, <span id="welcomeName">Segi</span>! 👋</h1>
+            <p class="text-muted">Yuk, rapikan semua sertifikat kegiatanmu.</p>
+          </div>
+          <button class="btn-primary open-modal-btn">
+            + Tambah sertifikat
+          </button>
+        </div>
+
+        <!-- Banner -->
+        <div class="hero-banner">
+          <div class="hero-text">
+            <p class="banner-tag">YOUR ACHIEVEMENTS MATTER</p>
+            <h2>Setiap pengalaman punya cerita.<br>Simpan cerita prestasimu.</h2>
+            <p>Mulai kumpulkan bukti perjalanan dan pencapaianmu di sini.</p>
+          </div>
+          <div class="hero-icon">
+            🏆
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-section">
+          <h3>Ringkasan arsip</h3>
+          <p class="text-muted sub">Lihat koleksi sertifikatmu sekilas.</p>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon purple"><i data-lucide="file-text"></i></div>
+              <p class="stat-title">Total sertifikat</p>
+              <h2 class="stat-value" id="statTotal">0</h2>
+              <p class="stat-sub">Dokumen tersimpan</p>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon blue"><i data-lucide="layers"></i></div>
+              <p class="stat-title">Kategori kegiatan</p>
+              <h2 class="stat-value" id="statCategory">0</h2>
+              <p class="stat-sub">Jenis kegiatan berbeda</p>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon orange"><i data-lucide="star"></i></div>
+              <p class="stat-title">Terbaru ditambahkan</p>
+              <h2 class="stat-value text-normal" id="statLatest">—</h2>
+              <p class="stat-sub">Sertifikat terakhir</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Certificates -->
+        <div class="recent-section">
+          <div class="section-flex">
+            <div>
+              <h3>Sertifikat terbaru</h3>
+              <p class="text-muted sub">Dokumen yang baru kamu tambahkan.</p>
+            </div>
+            <a href="#" id="linkSeeAll" class="link-more">Lihat semua →</a>
+          </div>
+
+          <div id="recentList" class="cert-container">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: SERTIFIKAT SAYA -->
+      <section id="sertifikatView" class="view-content">
+        <div class="view-header">
+          <div>
+            <p class="section-tag">KOLEKSI DOKUMEN</p>
+            <h1>Sertifikat Saya</h1>
+            <p class="text-muted">Kelola semua sertifikat kegiatanmu di sini.</p>
+          </div>
+          <button class="btn-primary open-modal-btn">
+            + Tambah sertifikat
+          </button>
+        </div>
+
+        <!-- Filters -->
+        <div class="filter-bar">
+          <div class="search-box">
+            <i data-lucide="search"></i>
+            <input type="text" id="searchInput" placeholder="Cari nama sertifikat atau kegiatan...">
+          </div>
+          <select id="categoryFilter">
+            <option value="ALL">Semua kategori</option>
+            <option value="Seminar / Webik">Seminar / Webik</option>
+            <option value="Lomba / Kompetisi">Lomba / Kompetisi</option>
+            <option value="Organisasi / Kepanitiaan">Organisasi / Kepanitiaan</option>
+            <option value="Pelatihan / Workshop">Pelatihan / Workshop</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+        </div>
+
+        <!-- Certificate List -->
+        <div id="allCertList" class="cert-container">
+          <!-- Rendered by JS -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ==================== MODAL TAMBAH SERTIFIKAT ==================== -->
+  <div id="certModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Tambah Sertifikat Baru</h3>
+        <button id="btnCloseModal" class="btn-close">&times;</button>
+      </div>
+      <form id="addCertForm">
+        <div class="form-group">
+          <label for="certTitle">Nama Sertifikat / Kegiatan</label>
+          <input type="text" id="certTitle" placeholder="Contoh: Juara 1 UI/UX Design Competition" required>
+        </div>
+        <div class="form-group">
+          <label for="certCategory">Kategori Kegiatan</label>
+          <select id="certCategory" required>
+            <option value="">Pilih Kategori</option>
+            <option value="Seminar / Webik">Seminar / Webik</option>
+            <option value="Lomba / Kompetisi">Lomba / Kompetisi</option>
+            <option value="Organisasi / Kepanitiaan">Organisasi / Kepanitiaan</option>
+            <option value="Pelatihan / Workshop">Pelatihan / Workshop</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="certDate">Tanggal Penerbitan / Kegiatan</label>
+          <input type="date" id="certDate" required>
+        </div>
+        <div class="form-group">
+          <label for="certOrganizer">Penyelenggara</label>
+          <input type="text" id="certOrganizer" placeholder="Contoh: Himpunan Mahasiswa Informatika" required>
+        </div>
+        <div class="form-group">
+          <label for="certFile">Upload File Sertifikat (Gambar / Foto)</label>
+          <input type="file" id="certFile" accept="image/*" required>
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="btnCancelModal" class="btn-secondary">Batal</button>
+          <button type="submit" class="btn-primary">Simpan Sertifikat</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL PREVIEW GAMBAR ==================== -->
+  <div id="imageModal" class="modal-overlay">
+    <div class="modal-content modal-preview-content">
+      <div class="modal-header">
+        <h3 id="previewTitle">Preview Sertifikat</h3>
+        <button id="btnCloseImageModal" class="btn-close">&times;</button>
+      </div>
+      <div class="preview-body">
+        <img id="previewImg" src="" alt="Sertifikat Preview" style="width: 100%; border-radius: 8px; object-fit: contain;">
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
